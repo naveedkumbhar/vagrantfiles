@@ -1,0 +1,28 @@
+# Vagrantfile to set up an Ubuntu 20.04 box with 512MB RAM and 1 CPU
+
+Vagrant.configure("2") do |config|
+  # Define a custom machine name
+  config.vm.define "ubuntu20" do |ubuntu20|
+    
+    # Use the latest Ubuntu 20.04 LTS box
+    ubuntu20.vm.box = "ubuntu/focal64"
+
+    # Set VM provider specific configurations
+    ubuntu20.vm.provider "virtualbox" do |vb|
+      vb.name = "ubuntu20"  # Name of the virtual machine
+      vb.memory = "512"     # Set RAM to 512MB
+      vb.cpus = 1           # Set CPU to 1
+    end
+
+    # Optional: Configurations for synced folder (Uncomment if needed)
+    # ubuntu20.vm.synced_folder "./data", "/vagrant_data"
+
+    # Optional: Provision the machine with a shell script (Uncomment if needed)
+    # ubuntu20.vm.provision "shell", inline: <<-SHELL
+    #   apt-get update
+    #   apt-get install -y apache2
+    # SHELL
+
+  end
+end
+

@@ -1,0 +1,28 @@
+# Vagrantfile to set up an Ubuntu 22.04 box with 512MB RAM and 1 CPU
+
+Vagrant.configure("2") do |config|
+  # Define a custom machine name
+  config.vm.define "naveedtest" do |naveedtest|
+    
+    # Use the latest Ubuntu 22.04 LTS box
+    naveedtest.vm.box = "ubuntu/jammy64"
+
+    # Set VM provider specific configurations
+    naveedtest.vm.provider "virtualbox" do |vb|
+      vb.name = "naveedtest"  # Name of the virtual machine
+      vb.memory = "512"       # Set RAM to 512MB
+      vb.cpus = 1             # Set CPU to 1
+    end
+
+    # Optional: Configurations for synced folder (Uncomment if needed)
+    # naveedtest.vm.synced_folder "./data", "/vagrant_data"
+
+    # Optional: Provision the machine with a shell script (Uncomment if needed)
+    # naveedtest.vm.provision "shell", inline: <<-SHELL
+    #   apt-get update
+    #   apt-get install -y apache2
+    # SHELL
+
+  end
+end
+
